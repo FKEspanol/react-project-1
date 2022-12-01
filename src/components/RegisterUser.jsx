@@ -1,7 +1,5 @@
 import React, { useRef, useState } from "react";
 
-import DisplayFormErrors from "./sub/DisplayErrorMessage";
-
 const RegisterUser = () => {
   const firstname = useRef(null);
   const lastname = useRef(null);
@@ -43,6 +41,7 @@ const RegisterUser = () => {
         console.log("Created User");
         console.log(newUser);
 
+        //* remove input values and clear formErrors array when registration is successful
         firstname.current.value = "";
         lastname.current.value = "";
         age.current.value = "";
@@ -60,139 +59,136 @@ const RegisterUser = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className="col-md-7 m-auto mt-5 shadow-lg p-5 mb-5 bg-white rounded"
+      className="col-md-7 m-auto mt-5 shadow-lg p-5 bg-white rounded"
     >
-      <div className="row mb-5">
+      <div className="row">
         {/* <!---------fistname----------> */}
         <div className="col">
-          <div className="form-outline">
-            <input
-              type="text"
-              id="firstname"
-              className="form-control"
-              ref={firstname}
-            />
-            <label className="form-label" htmlFor="firstname">
-              First name
-            </label>
-            {formErrors && (
-              <DisplayFormErrors formErrors={formErrors} state={"firstname"} />
-            )}
-          </div>
+          <FormInput
+            label_name="First Name"
+            type="text"
+            id="firstname"
+            classname="form-control"
+            reference={firstname}
+            formErrors={formErrors}
+            state="firstname"
+          />
         </div>
 
         {/* <!---------lastname----------> */}
         <div className="col">
-          <div className="form-outline">
-            <input
-              type="text"
-              id="lastname"
-              className="form-control"
-              ref={lastname}
-            />
-            <label className="form-label" htmlFor="lastname">
-              Last name
-            </label>
-            {formErrors && (
-              <DisplayFormErrors formErrors={formErrors} state={"lastname"} />
-            )}
-          </div>
+          <FormInput
+            label_name="Last Name"
+            type="text"
+            id="lastname"
+            classname="form-control"
+            reference={lastname}
+            formErrors={formErrors}
+            state="lastname"
+          />
         </div>
       </div>
       {/* <!---------Age----------> */}
-      <div className="row mb-5">
+      <div className="row">
         <div className="col">
-          <div className="form-outline">
-            <input
-              type="number"
-              id="typeNumber"
-              className="form-control"
-              ref={age}
-            />
-            <label className="form-label" htmlFor="typeNumber">
-              Enter Your Age
-            </label>
-            {formErrors && (
-              <DisplayFormErrors formErrors={formErrors} state={"age"} />
-            )}
-          </div>
+          <FormInput
+            label_name="Age"
+            type="number"
+            id="age"
+            classname="form-control"
+            reference={age}
+            formErrors={formErrors}
+            state="age"
+          />
         </div>
 
         {/* <!---------Job----------> */}
         <div className="col">
           <select
             className="form-select"
-            defaultValue={null}
             aria-label="Default select example"
             ref={job}
+            id="job"
           >
+            <option></option>
+            <option value="Freelancer">Freelancer</option>
             <option value="Developer">Developer</option>
             <option value="Virtual Assistant">Virtual Assistant</option>
             <option value="Model">Model</option>
           </select>
+          <label htmlFor="job">Select Job</label>
           {formErrors && (
             <DisplayFormErrors formErrors={formErrors} state={"job"} />
           )}
         </div>
       </div>
 
-      {/* <!---------Email----------> */}
-      <div className="form-outline mb-5">
-        <input type="email" id="email" className="form-control" ref={email} />
-        <label className="form-label" htmlFor="email">
-          Email address
-        </label>
-        {formErrors && (
-          <DisplayFormErrors formErrors={formErrors} state={"email"} />
-        )}
-      </div>
+      <FormInput
+        label_name="Email"
+        type="email"
+        id="email"
+        classname="form-control"
+        reference={email}
+        formErrors={formErrors}
+        state="email"
+      />
 
       {/* <!---------Password----------> */}
-      <div className="form-outline mb-5">
-        <input
-          type="password"
-          id="password"
-          className="form-control"
-          ref={password}
-        />
-        <label className="form-label" htmlFor="password">
-          Password
-        </label>
-        {formErrors && (
-          <DisplayFormErrors formErrors={formErrors} state={"password"} />
-        )}
-      </div>
+      <FormInput
+        label_name="Password"
+        type="password"
+        id="password"
+        classname="form-control"
+        reference={password}
+        formErrors={formErrors}
+        state="email"
+      />
 
-      {/* <div className="form-check d-flex justify-content-center mb-5">
-            <input className="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-            <label className="form-check-label" htmlFor="form2Example33">
-               Subscribe to our newsletter
-            </label>
-         </div> */}
-
-      <button type="submit" className="btn btn-primary btn-block mb-5">
+      <button type="submit" className="btn btn-primary btn-block">
         Sign up
       </button>
-
-      <div className="text-center">
-        <p>or sign up with:</p>
-        <button type="button" className="btn btn-secondary btn-floating mx-1">
-          <i className="fab fa-facebook-f"></i>
-        </button>
-
-        <button type="button" className="btn btn-secondary btn-floating mx-1">
-          <i className="fab fa-google"></i>
-        </button>
-
-        <button type="button" className="btn btn-secondary btn-floating mx-1">
-          <i className="fab fa-twitter"></i>
-        </button>
-
-        <button type="button" className="btn btn-secondary btn-floating mx-1">
-          <i className="fab fa-github"></i>
-        </button>
-      </div>
     </form>
+  );
+};
+
+const FormInput = ({
+  label_name,
+  type,
+  id,
+  classname,
+  reference,
+  formErrors,
+  state,
+}) => {
+  return (
+    <div className="form-outline mb-3">
+      <input type={type} id={id} className={classname} ref={reference} />
+      <label
+        className="form-label mb-0"
+        htmlFor={id}
+        style={{ fontSize: ".9rem" }}
+      >
+        {label_name}
+      </label>
+      {formErrors && (
+        <DisplayFormErrors formErrors={formErrors} state={state} />
+      )}
+    </div>
+  );
+};
+
+const DisplayFormErrors = ({ formErrors, state }) => {
+  let message;
+  formErrors.forEach((i) => {
+    if (i.key === state) {
+      message = i.errorMessage;
+    }
+  });
+
+  return (
+    <p className="text-danger" style={{ fontSize: ".85rem" }}>
+      {message}
+    </p>
   );
 };
 
