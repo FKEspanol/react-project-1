@@ -8,8 +8,17 @@ function App() {
   const ageInput = useRef(null);
   const jobInput = useRef(null);
 
-  const onChange = (event) =>
-    setProfPhoto(URL.createObjectURL(event.target.files[0]));
+  const onChange = (event) => {
+    // setProfPic(URL.createObjectURL(event.target.files[0]));
+    // console.log(URL.createObjectURL(event.target.files[0]));
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      const upload_img = reader.result;
+      setProfPhoto(upload_img);
+    });
+
+    reader.readAsDataURL(event.target.files[0]);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();

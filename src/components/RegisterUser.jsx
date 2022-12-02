@@ -10,9 +10,31 @@ const RegisterUser = () => {
 
   const [formErrors, setFormErrors] = useState();
 
+  // const [validFirstName, setValidFirstName] = useState(false);
+  // const [validLastName, setValidLastName] = useState(false);
+  // const [validAge, setValidAge] = useState(false);
+  // const [validJob, setValidJob] = useState(false);
+  // const [validEmail, setValidEmail] = useState(false);
+  // const [validPassword, setValidPassword] = useState(false);
+
+  const [picture, setProfPic] = useState();
+  const onChange = (event) => {
+    // setProfPic(URL.createObjectURL(event.target.files[0]));
+    // console.log(URL.createObjectURL(event.target.files[0]));
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      const upload_img = reader.result;
+      setProfPic(upload_img);
+      console.log(upload_img);
+    });
+
+    reader.readAsDataURL(event.target.files[0]);
+  };
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const formBody = {
+      picture,
       firstname: firstname.current.value,
       lastname: lastname.current.value,
       age: age.current.value,
@@ -71,7 +93,7 @@ const RegisterUser = () => {
             classname="form-control"
             reference={firstname}
             formErrors={formErrors}
-            state="firstname"
+            inputName="firstname"
           />
         </div>
 
@@ -84,7 +106,7 @@ const RegisterUser = () => {
             classname="form-control"
             reference={lastname}
             formErrors={formErrors}
-            state="lastname"
+            inputName="lastname"
           />
         </div>
       </div>
@@ -98,7 +120,7 @@ const RegisterUser = () => {
             classname="form-control"
             reference={age}
             formErrors={formErrors}
-            state="age"
+            inputName="age"
           />
         </div>
 
@@ -118,7 +140,7 @@ const RegisterUser = () => {
           </select>
           <label htmlFor="job">Select Job</label>
           {formErrors && (
-            <DisplayFormErrors formErrors={formErrors} state={"job"} />
+            <DisplayFormErrors formErrors={formErrors} inputName={"job"} />
           )}
         </div>
       </div>
@@ -130,7 +152,7 @@ const RegisterUser = () => {
         classname="form-control"
         reference={email}
         formErrors={formErrors}
-        state="email"
+        inputName="email"
       />
 
       {/* <!---------Password----------> */}
@@ -141,8 +163,20 @@ const RegisterUser = () => {
         classname="form-control"
         reference={password}
         formErrors={formErrors}
-        state="email"
+        inputName="password"
       />
+
+      <div className="form-group mb-3">
+        <input
+          type="file"
+          name="picture"
+          id="picture"
+          onChange={onChange}
+          className="form-control"
+        />
+        <label htmlFor="picture">Choose Profile Picture</label>
+        <DisplayFormErrors formErrors={formErrors} inputName="picture" />
+      </div>
 
       <button type="submit" className="btn btn-primary btn-block">
         Sign up
@@ -158,11 +192,11 @@ const FormInput = ({
   classname,
   reference,
   formErrors,
-  state,
+  inputName,
 }) => {
   return (
     <div className="form-outline mb-3">
-      <input type={type} id={id} className={classname} ref={reference} />
+      <input type={type} id={id} className={`${classname}`} ref={reference} />
       <label
         className="form-label mb-0"
         htmlFor={id}
@@ -171,16 +205,17 @@ const FormInput = ({
         {label_name}
       </label>
       {formErrors && (
-        <DisplayFormErrors formErrors={formErrors} state={state} />
+        <DisplayFormErrors formErrors={formErrors} inputName={inputName} />
       )}
     </div>
   );
 };
 
-const DisplayFormErrors = ({ formErrors, state }) => {
+const DisplayFormErrors = ({ formErrors, inputName }) => {
   let message;
-  formErrors.forEach((i) => {
-    if (i.key === state) {
+
+  formErrors?.forEach((i) => {
+    if (i.key === inputName) {
       message = i.errorMessage;
     }
   });
