@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import "./App.css";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import SignInUser from "./components/SignInUser";
 import RegisterUser from "./components/RegisterUser";
-import Copy from "./Copy";
+import ViewApplicant from "./components/ViewApplicant";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [applicant, setApplicant] = useState();
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -28,9 +28,22 @@ function App() {
       <Header />
       {/* <Copy /> */}
       <Routes>
-        <Route path="/" element={<Home users={users} />} />
         <Route path="/registerUser" element={<RegisterUser />} />
         <Route path="/signInUser" element={<SignInUser />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              users={users}
+              setUsers={setUsers}
+              setApplicant={setApplicant}
+            />
+          }
+        />
+        <Route
+          path="/viewApplicant"
+          element={<ViewApplicant applicant={applicant} />}
+        />
       </Routes>
     </React.Fragment>
   );

@@ -1,0 +1,25 @@
+@use "./_breakpoints.scss" as *;
+
+.home {
+  overflow: hidden;
+  .my-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @include x-large-screen {
+      gap: 1rem;
+    }
+
+    @include large-screen {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include medium-screen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include small-screen {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
