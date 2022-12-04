@@ -1,6 +1,8 @@
 import React from "react";
 
 const ViewApplicant = ({ applicant }) => {
+  // console.log(applicant._id);
+  if (!applicant) return <h1>Page Not Found</h1>;
   return (
     <div className="row justify-content-center align-items-center mt-5">
       <div key={applicant._id} className="card shadow col-md-4">
