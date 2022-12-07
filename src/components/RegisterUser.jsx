@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
+import { actions } from "../state/reducer";
 
-const RegisterUser = () => {
+const RegisterUser = ({ dispatch }) => {
   const firstname = useRef(null);
   const lastname = useRef(null);
   const age = useRef(null);
@@ -62,6 +63,7 @@ const RegisterUser = () => {
       } else {
         console.log("Created User");
         console.log(newUser);
+        dispatch({ type: actions.ADD_USER, payload: newUser });
 
         //* remove input values and clear formErrors array when registration is successful
         firstname.current.value = "";

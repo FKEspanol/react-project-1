@@ -1,11 +1,11 @@
 import React from "react";
 
-const ViewApplicant = ({ applicant }) => {
-  // console.log(applicant._id);
-  if (!applicant) return <h1>Page Not Found</h1>;
+const ViewApplicant = ({ user }) => {
+  // console.log(user._id);
+  if (!user) return <h1>Page Not Found</h1>;
   return (
     <div className="row justify-content-center align-items-center mt-5">
-      <div key={applicant._id} className="card shadow col-md-4">
+      <div key={user._id} className="card shadow col-md-4">
         <div
           style={{
             width: "100%",
@@ -15,9 +15,9 @@ const ViewApplicant = ({ applicant }) => {
           }}
         >
           <img
-            src={applicant.picture}
+            src={user.picture}
             className="p-2"
-            alt={`${applicant.firstname}'s profile photo`}
+            alt={`${user.firstname}'s profile photo`}
             style={{
               width: "100%",
               height: "100%",
@@ -28,9 +28,9 @@ const ViewApplicant = ({ applicant }) => {
         </div>
         <div className="card-body">
           <h4 className="card-title text-success">
-            {applicant.firstname} {applicant.lastname}
+            {user.firstname} {user.lastname}
           </h4>
-          <p className="card-text">{`Hi I am ${applicant.firstname}, ${applicant.age} years old, and I'm a ${applicant.job}`}</p>
+          <p className="card-text">{`Hi I am ${user.firstname}, ${user.age} years old, and I'm a ${user.job}`}</p>
         </div>
       </div>
     </div>
