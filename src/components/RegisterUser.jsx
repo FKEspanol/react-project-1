@@ -11,22 +11,13 @@ const RegisterUser = ({ dispatch }) => {
 
   const [formErrors, setFormErrors] = useState();
 
-  // const [validFirstName, setValidFirstName] = useState(false);
-  // const [validLastName, setValidLastName] = useState(false);
-  // const [validAge, setValidAge] = useState(false);
-  // const [validJob, setValidJob] = useState(false);
-  // const [validEmail, setValidEmail] = useState(false);
-  // const [validPassword, setValidPassword] = useState(false);
-
   const [picture, setProfPic] = useState();
   const onChange = (event) => {
-    // setProfPic(URL.createObjectURL(event.target.files[0]));
-    // console.log(URL.createObjectURL(event.target.files[0]));
     const reader = new FileReader();
     reader.addEventListener("load", () => {
       const upload_img = reader.result;
       setProfPic(upload_img);
-      console.log(upload_img);
+      // console.log(upload_img);
     });
 
     reader.readAsDataURL(event.target.files[0]);
@@ -85,6 +76,7 @@ const RegisterUser = ({ dispatch }) => {
       onSubmit={onSubmit}
       className="col-md-7 m-auto mt-5 shadow-lg p-5 bg-white rounded"
     >
+      <h2 className="pb-3">Register</h2>
       <div className="row">
         {/* <!---------fistname----------> */}
         <div className="col">

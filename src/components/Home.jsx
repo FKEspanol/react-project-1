@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { actions } from "../state/reducer";
 
@@ -10,7 +9,7 @@ const Home = ({ allUsers, dispatch }) => {
       });
       const data = await res.json();
       if (data.result === "ok") {
-        let newUsers = allUsers.filter((i) => i._id !== _id);
+        let newUsers = allUsers.filter((user) => user._id !== _id);
         dispatch({ type: actions.SET_ALL_USER, payload: newUsers });
       }
     } catch (error) {
@@ -49,7 +48,7 @@ const Home = ({ allUsers, dispatch }) => {
                 </h4>
                 <p className="card-text">{`Hi I am ${user.firstname}, ${user.age} years old, and I'm a ${user.job}`}</p>
                 <Link
-                  to="/viewApplicant"
+                  to="/viewUser"
                   className="btn btn-success me-2"
                   onClick={() =>
                     dispatch({ type: actions.SET_USER, payload: user })

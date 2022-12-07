@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { actions, initialState, reducer } from "./state/reducer";
@@ -27,7 +27,6 @@ function App() {
   return (
     <React.Fragment>
       <Header />
-      {/* <Copy /> */}
       <Routes>
         <Route
           path="/registerUser"
@@ -40,7 +39,7 @@ function App() {
           path="/"
           element={<Home allUsers={state.allUsers} dispatch={dispatch} />}
         />
-        <Route path="/viewApplicant" element={<ViewUser user={state.user} />} />
+        <Route path="/viewUser" element={<ViewUser user={state.user} />} />
       </Routes>
     </React.Fragment>
   );
