@@ -17,11 +17,11 @@ const Home = ({ allUsers, dispatch }) => {
     }
   };
   return (
-    <div className="mt-5 home">
+    <div className="home min-vh-100">
       <div className="my-container">
         {allUsers.map((user) => {
           return (
-            <div key={user._id} className="card shadow">
+            <div key={user._id} className="card shadow-lg">
               <div
                 style={{
                   width: "100%",
@@ -43,13 +43,13 @@ const Home = ({ allUsers, dispatch }) => {
                 ></img>
               </div>
               <div className="card-body">
-                <h4 className="card-title text-success">
+                <h4 className="card-title text-dark">
                   {user.firstname} {user.lastname}
                 </h4>
                 <p className="card-text">{`Hi I am ${user.firstname}, ${user.age} years old, and I'm a ${user.job}`}</p>
                 <Link
                   to="/viewUser"
-                  className="btn btn-success me-2"
+                  className="btn btn-dark me-2"
                   onClick={() =>
                     dispatch({ type: actions.SET_USER, payload: user })
                   }

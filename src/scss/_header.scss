@@ -1,0 +1,26 @@
+nav {
+  background-color: $primary;
+}
+
+.navbar-toggler {
+  border: none;
+
+  &:active {
+    outline: none;
+  }
+}
+.nav-list {
+  padding: 0.3rem 0.5rem;
+  transition: 100ms;
+  color: #000;
+  &:hover {
+    background-color: $primary;
+    color: #fff;
+  }
+  .link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+}

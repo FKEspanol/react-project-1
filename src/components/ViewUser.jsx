@@ -27,7 +27,7 @@ const ViewApplicant = ({ user }) => {
           ></img>
         </div>
         <div className="card-body">
-          <h4 className="card-title text-success">
+          <h4 className="card-title">
             {user.firstname} {user.lastname}
           </h4>
           <p className="card-text">{`Hi I am ${user.firstname}, ${user.age} years old, and I'm a ${user.job}`}</p>

@@ -19,43 +19,45 @@ const SignInUser = () => {
     }
   };
   return (
-    <form
-      onChange={(e) => onChange(e)}
-      onSubmit={(e) => onSubmit(e)}
-      className="col-md-7 m-auto mt-5 shadow-lg p-5 bg-white rounded"
-    >
-      {/* <!-- Email input --> */}
-      <h2 className="pb-3">Sign in</h2>
-      <div className="form-outline mb-4">
-        <input
-          type="email"
-          name="email"
-          id="form1Example1"
-          className="form-control"
-        />
-        <label className="form-label" htmlFor="form1Example1">
-          Email address
-        </label>
-      </div>
+    <div className="container">
+      <form
+        onChange={(e) => onChange(e)}
+        onSubmit={(e) => onSubmit(e)}
+        className="login-form col-md-7 container shadow-lg px-sm-5 py-4 bg-white rounded"
+      >
+        {/* <!-- Email input --> */}
+        <h4 className="pb-3 fw-bold text-primary">Sign in</h4>
+        <div className="form-outline mb-4">
+          <input
+            type="email"
+            name="email"
+            id="form1Example1"
+            className="form-control"
+          />
+          <label className="form-label" htmlFor="form1Example1">
+            Email address
+          </label>
+        </div>
 
-      {/* <!-- Password input --> */}
-      <div className="form-outline mb-4">
-        <input
-          type="password"
-          name="password"
-          id="form1Example2"
-          className="form-control"
-        />
-        <label className="form-label" htmlFor="form1Example2">
-          Password
-        </label>
-      </div>
+        {/* <!-- Password input --> */}
+        <div className="form-outline mb-4">
+          <input
+            type="password"
+            name="password"
+            id="form1Example2"
+            className="form-control"
+          />
+          <label className="form-label" htmlFor="form1Example2">
+            Password
+          </label>
+        </div>
 
-      {/* <!-- Submit button --> */}
-      <button type="submit" className="btn btn-primary btn-block">
-        Sign in
-      </button>
-    </form>
+        {/* <!-- Submit button --> */}
+        <button type="submit" className="btn btn-primary btn-block">
+          Sign in
+        </button>
+      </form>
+    </div>
   );
 };
 

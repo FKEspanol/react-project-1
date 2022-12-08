@@ -27,20 +27,22 @@ function App() {
   return (
     <React.Fragment>
       <Header />
-      <Routes>
-        <Route
-          path="/registerUser"
-          element={
-            <RegisterUser allUsers={state.allUsers} dispatch={dispatch} />
-          }
-        />
-        <Route path="/signInUser" element={<SignInUser />} />
-        <Route
-          path="/"
-          element={<Home allUsers={state.allUsers} dispatch={dispatch} />}
-        />
-        <Route path="/viewUser" element={<ViewUser user={state.user} />} />
-      </Routes>
+      <main className="main">
+        <Routes>
+          <Route
+            path="/registerUser"
+            element={
+              <RegisterUser allUsers={state.allUsers} dispatch={dispatch} />
+            }
+          />
+          <Route path="/signInUser" element={<SignInUser />} />
+          <Route
+            path="/"
+            element={<Home allUsers={state.allUsers} dispatch={dispatch} />}
+          />
+          <Route path="/viewUser" element={<ViewUser user={state.user} />} />
+        </Routes>
+      </main>
     </React.Fragment>
   );
 }

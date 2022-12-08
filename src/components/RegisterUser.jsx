@@ -70,112 +70,114 @@ const RegisterUser = ({ dispatch }) => {
     }
   };
 
-  console.log(formErrors);
   return (
-    <form
-      onSubmit={onSubmit}
-      className="col-md-7 m-auto mt-5 shadow-lg p-5 bg-white rounded"
-    >
-      <h2 className="pb-3">Register</h2>
-      <div className="row">
-        {/* <!---------fistname----------> */}
-        <div className="col">
-          <FormInput
-            label_name="First Name"
-            type="text"
-            id="firstname"
-            classname="form-control"
-            reference={firstname}
-            formErrors={formErrors}
-            inputName="firstname"
-          />
+    <div className="container">
+      <form
+        onSubmit={onSubmit}
+        className="register-form col-lg-7 mx-auto shadow-lg container px-sm-5 py-4 bg-white rounded"
+      >
+        <h4 className="pb-3 fw-bold text-primary">Register</h4>
+        <div className="row">
+          {/* <!---------fistname----------> */}
+          <div className="col">
+            <FormInput
+              label_name="First Name"
+              type="text"
+              id="firstname"
+              classname="form-control"
+              reference={firstname}
+              formErrors={formErrors}
+              inputName="firstname"
+            />
+          </div>
+
+          {/* <!---------lastname----------> */}
+          <div className="col">
+            <FormInput
+              label_name="Last Name"
+              type="text"
+              id="lastname"
+              classname="form-control"
+              reference={lastname}
+              formErrors={formErrors}
+              inputName="lastname"
+            />
+          </div>
+        </div>
+        {/* <!---------Age----------> */}
+        <div className="row">
+          <div className="col">
+            <FormInput
+              label_name="Age"
+              type="number"
+              id="age"
+              classname="form-control"
+              reference={age}
+              formErrors={formErrors}
+              inputName="age"
+            />
+          </div>
+
+          {/* <!---------Job----------> */}
+          <div className="col">
+            <label htmlFor="job">Select Job</label>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              ref={job}
+              id="job"
+            >
+              <option></option>
+              <option value="Freelancer">Freelancer</option>
+              <option value="Developer">Developer</option>
+              <option value="Virtual Assistant">Virtual Assistant</option>
+              <option value="Model">Model</option>
+            </select>
+
+            {formErrors && (
+              <DisplayFormErrors formErrors={formErrors} inputName={"job"} />
+            )}
+          </div>
         </div>
 
-        {/* <!---------lastname----------> */}
-        <div className="col">
-          <FormInput
-            label_name="Last Name"
-            type="text"
-            id="lastname"
-            classname="form-control"
-            reference={lastname}
-            formErrors={formErrors}
-            inputName="lastname"
-          />
-        </div>
-      </div>
-      {/* <!---------Age----------> */}
-      <div className="row">
-        <div className="col">
-          <FormInput
-            label_name="Age"
-            type="number"
-            id="age"
-            classname="form-control"
-            reference={age}
-            formErrors={formErrors}
-            inputName="age"
-          />
-        </div>
-
-        {/* <!---------Job----------> */}
-        <div className="col">
-          <select
-            className="form-select"
-            aria-label="Default select example"
-            ref={job}
-            id="job"
-          >
-            <option></option>
-            <option value="Freelancer">Freelancer</option>
-            <option value="Developer">Developer</option>
-            <option value="Virtual Assistant">Virtual Assistant</option>
-            <option value="Model">Model</option>
-          </select>
-          <label htmlFor="job">Select Job</label>
-          {formErrors && (
-            <DisplayFormErrors formErrors={formErrors} inputName={"job"} />
-          )}
-        </div>
-      </div>
-
-      <FormInput
-        label_name="Email"
-        type="email"
-        id="email"
-        classname="form-control"
-        reference={email}
-        formErrors={formErrors}
-        inputName="email"
-      />
-
-      {/* <!---------Password----------> */}
-      <FormInput
-        label_name="Password"
-        type="password"
-        id="password"
-        classname="form-control"
-        reference={password}
-        formErrors={formErrors}
-        inputName="password"
-      />
-
-      <div className="form-group mb-3">
-        <input
-          type="file"
-          name="picture"
-          id="picture"
-          onChange={onChange}
-          className="form-control"
+        <FormInput
+          label_name="Email"
+          type="email"
+          id="email"
+          classname="form-control"
+          reference={email}
+          formErrors={formErrors}
+          inputName="email"
         />
-        <label htmlFor="picture">Choose Profile Picture</label>
-        <DisplayFormErrors formErrors={formErrors} inputName="picture" />
-      </div>
 
-      <button type="submit" className="btn btn-primary btn-block">
-        Sign up
-      </button>
-    </form>
+        {/* <!---------Password----------> */}
+        <FormInput
+          label_name="Password"
+          type="password"
+          id="password"
+          classname="form-control"
+          reference={password}
+          formErrors={formErrors}
+          inputName="password"
+        />
+
+        <div className="form-group mb-3">
+          <input
+            type="file"
+            name="picture"
+            id="picture"
+            onChange={onChange}
+            className="form-control"
+          />
+          <label htmlFor="picture">Choose Profile Picture</label>
+          <DisplayFormErrors formErrors={formErrors} inputName="picture" />
+        </div>
+
+        <button type="submit" className="btn btn-primary btn-block">
+          Sign up
+        </button>
+      </form>
+    </div>
   );
 };
 
@@ -189,8 +191,7 @@ const FormInput = ({
   inputName,
 }) => {
   return (
-    <div className="form-outline mb-3">
-      <input type={type} id={id} className={`${classname}`} ref={reference} />
+    <div className="form-group mb-4">
       <label
         className="form-label mb-0"
         htmlFor={id}
@@ -198,6 +199,14 @@ const FormInput = ({
       >
         {label_name}
       </label>
+      <input
+        type={type}
+        id={id}
+        className={`${classname}`}
+        ref={reference}
+        placeholder={`${label_name}`}
+      />
+
       {formErrors && (
         <DisplayFormErrors formErrors={formErrors} inputName={inputName} />
       )}
