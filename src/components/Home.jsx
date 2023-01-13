@@ -49,7 +49,7 @@ const Home = ({ allUsers, dispatch }) => {
                 <p className="card-text">{`Hi I am ${user.firstname}, ${user.age} years old, and I'm a ${user.job}`}</p>
                 <Link
                   to="/viewUser"
-                  className="btn btn-dark me-2"
+                  className="btn btn-primary me-2"
                   onClick={() =>
                     dispatch({ type: actions.SET_USER, payload: user })
                   }
